@@ -3,15 +3,47 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
+//upload movie
+const connectDB = require("../../config/db");
+const bodyParser = require("body-parser");
+const path = require("path");
+const crypto = require("crypto");
+const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
+const methidOverride = require("method-override");
+
 const Post = require("../../models/Post");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+
+// Create Storage engine
+const storage = new GridFsStorage({
+  url: connectDB,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: "uploads"
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
 
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
 router.post(
   "/",
+  upload.single("file"),
   [
     auth,
     [

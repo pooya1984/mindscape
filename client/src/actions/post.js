@@ -170,3 +170,36 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     });
   }
 };
+
+// Get post by ID
+export const getPostById = userId => async dispatch => {
+  try {
+    const res = await axios.get(`/api/posts/user/${userId}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+// Get current users posts
+export const getCurrentPost = () => async dispatch => {
+  try {
+    const res = await axios.get("/api/posts/me");
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};

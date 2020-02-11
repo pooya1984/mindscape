@@ -2,52 +2,50 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
-
-//upload movie
-const connectDB = require("../../config/db");
-const bodyParser = require("body-parser");
-const path = require("path");
-const crypto = require("crypto");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
-const Grid = require("gridfs-stream");
-const methidOverride = require("method-override");
-
 const Post = require("../../models/Post");
-const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
+//  <----------------------  upload movie ---------------------------------->
+// const connectDB = require("../../config/db");
+// const bodyParser = require("body-parser");
+// const path = require("path");
+// const crypto = require("crypto");
+// const multer = require("multer");
+// const GridFsStorage = require("multer-gridfs-storage");
+// const Grid = require("gridfs-stream");
+// const methidOverride = require("method-override");
+
 // Create Storage engine
-const storage = new GridFsStorage({
-  url: connectDB,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: "uploads"
-        };
-        resolve(fileInfo);
-      });
-    });
-  }
-});
-const upload = multer({ storage });
+// const storage = new GridFsStorage({
+//   url: connectDB,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err);
+//         }
+//         const filename = buf.toString("hex") + path.extname(file.originalname);
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: "uploads"
+//         };
+//         resolve(fileInfo);
+//       });
+//     });
+//   }
+// });
+// const upload = multer({ storage });
+//  <-------------------------------- end of upload movie ---------------------------------->
 
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
 router.post(
   "/",
-  upload.single("file"),
   [
     auth,
     [
-      check("title", "title is required")
+      check("text", "Text is required")
         .not()
         .isEmpty()
     ]
@@ -62,7 +60,6 @@ router.post(
       const user = await User.findById(req.user.id).select("-password");
 
       const newPost = new Post({
-        title: req.body.title,
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
@@ -98,6 +95,47 @@ router.get("/", auth, async (req, res) => {
 router.get("/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
+//@route  GET api/posts/me
+//@desc   Get current users posts
+//@access Private
+router.get("/me", auth, async (req, res) => {
+  try {
+    const post = await Post.find(req.params.id);
+
+    if (!post) {
+      return res.status(400).json({ msg: "There is no post for this user" });
+    }
+
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    GET api/posts/user/:user_id
+// @desc     Get post by user ID
+// @access   Public
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    const post = await Post.find({
+      user: req.params.user_id
+    });
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });

@@ -8,13 +8,19 @@ import Navbar from "../../components/layout/Navbar";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import { setAlert } from "../../actions/alert";
 import CreateProfile from "../profile-forms/CreateProfile";
+import Posts from "../posts/Posts";
 import Alert from "../layout/Alert";
+import DashboardPost from "../post/DashboardPost";
 
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, loading }
+  profile: {
+    // user: { _id },
+    profile,
+    loading
+  }
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -67,14 +73,21 @@ const Dashboard = ({
             />{" "}
             <p>{profile.status}</p>
           </div>
+          {/* <Link to={`/dashboardPost/${_id}`} className="btn btn-primary">
+            View posts
+          </Link> */}
         </Fragment>
       ) : (
         <Fragment>
           <Alert />
           <p>You have not yet setup a profile, please add some info</p>
-          <CreateProfile />
+          {/* <CreateProfile /> */}
         </Fragment>
       )}
+
+      {/* <Posts /> */}
+      {/* TODO: create user posts */}
+      {/* <DashboardPost /> */}
     </Fragment>
   );
 };

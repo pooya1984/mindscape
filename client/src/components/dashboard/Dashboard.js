@@ -87,7 +87,7 @@ const Dashboard = ({
 
       {/* <Posts /> */}
       {/* TODO: create user posts */}
-      {/* <DashboardPost /> */}
+      <DashboardPost />
     </Fragment>
   );
 };

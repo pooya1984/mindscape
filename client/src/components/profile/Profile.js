@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
+import Navbar from "../../components/layout/Navbar";
 import ProfileTop from "./ProfileTop";
 // import ProfileAbout from "./ProfileAbout";
 import { getProfileById } from "../../actions/profile";
@@ -23,6 +24,13 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
+          <Navbar />
+
+          <div className="profile-grid my-1">
+            <ProfileTop profile={profile} />
+            {/* <ProfileAbout profile={profile} /> */}
+            <div className="profile-exp bg-white p-2"></div>
+          </div>
           <Link to="/profiles" className="btn btn-light">
             Back To Profiles
           </Link>
@@ -33,11 +41,6 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
-          <div className="profile-grid my-1">
-            <ProfileTop profile={profile} />
-            {/* <ProfileAbout profile={profile} /> */}
-            <div className="profile-exp bg-white p-2"></div>
-          </div>
         </Fragment>
       )}
     </Fragment>

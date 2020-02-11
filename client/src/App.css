@@ -321,7 +321,7 @@ button {
 /* Navbar */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0.7rem 2rem;
   width: 100%;
@@ -332,6 +332,8 @@ button {
 
 .navbar ul {
   display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .navbar a {
@@ -365,6 +367,10 @@ button {
   z-index: 1000;
   max-width: 30%;
   min-width: 100px;
+}
+.nav-logo {
+  width: 20%;
+  min-width: 10%;
 }
 
 .landing-inner {

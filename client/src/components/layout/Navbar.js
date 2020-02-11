@@ -3,27 +3,33 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-import logo from "../../img/DUBLAJ-logo.ico";
+import logo from "../../img/DUBLAJ-logo-bw.png";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">main Page</Link>
-      </li>
-      <li>
-        <Link to="/posts">Posts</Link>
+        <Link to="/profiles">
+          <i class="far fa-address-card">
+            {" "}
+            <span className="hide-sm"></span>
+          </i>
+        </Link>
       </li>
       <li>
         <Link to="/dashboard">
-          <i className="fas fa-user" />{" "}
-          <span className="hide-sm">Dashboard</span>
+          <i className="fas fa-user" /> <span className="hide-sm"></span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/posts">
+          <i className="fas fa-home" /> <span className="hide-sm"></span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href="/">
           <i className="fas fa-sign-out-alt" />{" "}
-          <span className="hide-sm">Logout</span>
+          <span className="hide-sm"></span>
         </a>
       </li>
     </ul>
@@ -33,12 +39,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <nav className="navbar bg-light">
-      <h1>
-        <Link to="/">
-          {/* TODO: creaKCte icon for navbar */}
-          <i href={logo} /> DUBLAJ
-        </Link>
-      </h1>
+      <Link to="/">
+        <img
+          className="nav-logo"
+          alt="DUBLAJ"
+          src={logo}
+          // style={{ width: "20%", minWidth: "10%" }}
+        />
+      </Link>
+
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}

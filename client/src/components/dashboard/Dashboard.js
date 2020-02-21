@@ -31,47 +31,40 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <Navbar />
-      <div className="d-flex">
-        <p className="lead p-4">
-          {/* <img
-              src={user.avatar}
-              className="rounded img-thumbnail p-2"
-              alt="profile-picture"
-            /> */}
-          Welcom {user && user.name}
-        </p>
-      </div>
+
       {profile !== null ? (
         <Fragment>
-          <section className="d-flex  justify-content-around">
-            <i class="fa fa-cog dropdown ">
-              <div
-                class=" dropdown-toggle"
-                id="navbardrop"
-                data-toggle="dropdown"
-              ></div>
-              <div class="dropdown-menu border-0">
-                <DashboardActions />
-                <div className="my-2">
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger btn-sm"
-                    onClick={() => deleteAccount()}
-                  >
-                    Delete Account
-                  </button>
-                </div>
+          <div className="m-5 border border-info border-top-0 border-left-0 border-right-0 ">
+            <section className="m-5 p-5 d-flex  justify-content-around">
+              <img
+                src={profile.user.avatar}
+                className="rounded img-thumbnail p-2"
+                alt="profile-picture"
+              />{" "}
+              <div className="d-column">
+                <p>{profile.user.name}</p>
+                <p>{profile.status}</p>
               </div>
-            </i>
-          </section>
-          <div>
-            <p>{profile.user.name}</p>
-            <img
-              src={profile.user.avatar}
-              className="rounded img-thumbnail p-2"
-              alt="profile-picture"
-            />{" "}
-            <p>{profile.status}</p>
+              <i class="fa fa-cog dropdown ">
+                <div
+                  class=" dropdown-toggle"
+                  id="navbardrop"
+                  data-toggle="dropdown"
+                ></div>
+                <div class="dropdown-menu border-0">
+                  <DashboardActions />
+                  <div className="my-2">
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger btn-sm"
+                      onClick={() => deleteAccount()}
+                    >
+                      Delete Account
+                    </button>
+                  </div>
+                </div>
+              </i>
+            </section>
           </div>
           {/* <Link to={`/dashboardPost/${_id}`} className="btn btn-primary">
             View posts
@@ -80,8 +73,9 @@ const Dashboard = ({
       ) : (
         <Fragment>
           <Alert />
+          <p className="lead p-4">Welcom {user && user.name}</p>
           <p>You have not yet setup a profile, please add some info</p>
-          {/* <CreateProfile /> */}
+          <CreateProfile />
         </Fragment>
       )}
 
@@ -101,7 +95,8 @@ Dashboard.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  post: state.post
 });
 
 export default connect(mapStateToProps, {

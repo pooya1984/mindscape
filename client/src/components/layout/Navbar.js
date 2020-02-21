@@ -44,7 +44,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           className="nav-logo"
           alt="DUBLAJ"
           src={logo}
-          // style={{ width: "20%", minWidth: "10%" }}
         />
       </Link>
 

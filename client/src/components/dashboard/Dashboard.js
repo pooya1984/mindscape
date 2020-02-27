@@ -35,7 +35,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <div className="m-5 border border-info border-top-0 border-left-0 border-right-0 ">
-            <section className="m-5 p-5 d-flex  justify-content-around">
+            <section className="m-5 p-3 d-flex  justify-content-around">
               <img
                 src={profile.user.avatar}
                 className="rounded img-thumbnail p-2"
@@ -44,6 +44,7 @@ const Dashboard = ({
               <div className="d-column">
                 <p>{profile.user.name}</p>
                 <p>{profile.status}</p>
+                <p>{profile.location}</p>
               </div>
               <i class="fa fa-cog dropdown ">
                 <div

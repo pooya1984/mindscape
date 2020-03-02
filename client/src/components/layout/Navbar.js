@@ -10,7 +10,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul>
       <li>
         <Link to="/profiles">
-          <i class="far fa-address-card">
+          <i className="far fa-address-card">
             {" "}
             <span className="hide-sm"></span>
           </i>
@@ -40,11 +40,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <nav className="navbar bg-light">
       <Link to="/">
-        <img
-          className="nav-logo"
-          alt="DUBLAJ"
-          src={logo}
-        />
+        <img className="nav-logo" alt="DUBLAJ" src={logo} />
       </Link>
 
       {!loading && (

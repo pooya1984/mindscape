@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import UploadPic from "./UploadPic";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const CreateProfile = ({
@@ -41,13 +42,15 @@ const CreateProfile = ({
         profile stand out
       </p>
       {/* <small>* = required field</small> */}
+      <UploadPic />
+
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
             placeholder="status"
             name="status"
-            value={location}
+            value={status}
             onChange={e => onChange(e)}
           />
         </div>

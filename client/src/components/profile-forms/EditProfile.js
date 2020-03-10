@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import UploadPic from "./UploadPic";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = ({
@@ -50,21 +51,18 @@ const EditProfile = ({
       <p className="lead">
         <i className="fas fa-user" /> Add some changes to your profile
       </p>
-      <small>* = required field</small>
+      {/* <small>* = required field</small> */}
+      <UploadPic />
       <form className="form" onSubmit={e => onSubmit(e)}>
-        {/* <div className='form-group'>
-          <select name='status' value={status} onChange={e => onChange(e)}>
-            <option>* Select Professional Status</option>
-            <option value='Developer'>Developer</option>
-            <option value='Junior Developer'>Junior Developer</option>
-            <option value='Senior Developer'>Senior Developer</option>
-            <option value='Manager'>Manager</option>
-            <option value='Student or Learning'>Student or Learning</option>
-            <option value='Instructor'>Instructor or Teacher</option>
-            <option value='Intern'>Intern</option>
-            <option value='Other'>Other</option>
-          </select>
-        </div> */}
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Status"
+            name="status"
+            value={status}
+            onChange={e => onChange(e)}
+          />
+        </div>
         <div className="form-group">
           <input
             type="text"
@@ -135,7 +133,11 @@ const EditProfile = ({
           </Fragment>
         )}
 
-        <input type="submit" className="btn btn-primary my-1" />
+        <input
+          type="submit"
+          value="save your changes"
+          className="btn btn-primary my-1"
+        />
         <Link className="btn btn-light my-1" to="/dashboard">
           Go Back
         </Link>

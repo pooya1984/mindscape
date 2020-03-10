@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
@@ -21,7 +22,10 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
-      <PostForm />
+      {/* <PostForm /> */}
+      <Link to="/post-form" type="button">
+        <i className="fas fa-plus-circle postForm" />
+      </Link>
       <div className="posts">
         {posts.map(post => (
           <PostItem key={post._id} post={post} />

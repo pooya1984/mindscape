@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import UserAvatar from "react-user-avatar";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -8,9 +9,11 @@ import Navbar from "../../components/layout/Navbar";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import { setAlert } from "../../actions/alert";
 import CreateProfile from "../profile-forms/CreateProfile";
+import UploadPic from "../profile-forms/UploadPic";
 import Posts from "../posts/Posts";
 import Alert from "../layout/Alert";
 import DashboardPost from "../post/DashboardPost";
+// import profilePic from "../../img/";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -36,23 +39,28 @@ const Dashboard = ({
         <Fragment>
           <div className="m-5 border border-info border-top-0 border-left-0 border-right-0 ">
             <section className="m-5 p-3 d-flex  justify-content-around">
-              <img
-                src={profile.user.avatar}
-                className="rounded img-thumbnail p-2"
-                alt="profile-picture"
-              />{" "}
+              {profile.user.name ? (
+                <UserAvatar size="200" name={user && user.name} />
+              ) : (
+                <UserAvatar
+                  size="200"
+                  name={user && user.name}
+                  src={require(`../../img/profilePics/${user._id}.png`)}
+                />
+              )}
+
               <div className="d-column">
                 <p>{profile.user.name}</p>
                 <p>{profile.status}</p>
                 <p>{profile.location}</p>
               </div>
-              <i class="fa fa-cog dropdown ">
+              <i className="fa fa-cog dropdown ">
                 <div
-                  class=" dropdown-toggle"
+                  className=" dropdown-toggle"
                   id="navbardrop"
                   data-toggle="dropdown"
                 ></div>
-                <div class="dropdown-menu border-0">
+                <div className="dropdown-menu border-0">
                   <DashboardActions />
                   <div className="my-2">
                     <button
@@ -65,6 +73,9 @@ const Dashboard = ({
                   </div>
                 </div>
               </i>
+              <Link to="/post-form" type="button">
+                <i className="fas fa-plus-circle postForm" />
+              </Link>
             </section>
           </div>
           {/* <Link to={`/dashboardPost/${_id}`} className="btn btn-primary">

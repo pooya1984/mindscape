@@ -501,6 +501,12 @@ button {
 }
 
 /* Posts Page */
+.posts {
+  display: flex;
+  padding: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .post-form .post-form-header {
   background: var(--primary-color);
   padding: 0.5rem;
@@ -533,6 +539,15 @@ button {
   color: #aaa;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+}
+
+.postForm {
+  color: brown;
+  font-size: 8rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 3rem;
 }
 
 /* Mobile Styles */

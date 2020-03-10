@@ -18,10 +18,10 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   ) : (
     <Fragment>
       <Navbar />
-      <h1 className="large text-primary">Posts</h1>
-      <p className="lead">
+      <h1 className="large text-center text-secondary">New Posts</h1>
+      {/* <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
-      </p>
+      </p> */}
       {/* <PostForm /> */}
       <Link to="/post-form" type="button">
         <i className="fas fa-plus-circle postForm" />

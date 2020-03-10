@@ -53,6 +53,53 @@ const Dashboard = ({
                 <p>{profile.user.name}</p>
                 <p>{profile.status}</p>
                 <p>{profile.location}</p>
+                <div className="icons my-1">
+                  {profile.social && profile.social.twitter && (
+                    <a
+                      href={profile.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-twitter fa-2x" />
+                    </a>
+                  )}
+                  {profile.social && profile.social.facebook && (
+                    <a
+                      href={profile.social.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-facebook fa-2x" />
+                    </a>
+                  )}
+                  {profile.social && profile.social.linkedin && (
+                    <a
+                      href={profile.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-linkedin fa-2x" />
+                    </a>
+                  )}
+                  {profile.social && profile.social.youtube && (
+                    <a
+                      href={profile.social.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-youtube fa-2x" />
+                    </a>
+                  )}
+                  {profile.social && profile.social.instagram && (
+                    <a
+                      href={profile.social.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-instagram fa-2x" />
+                    </a>
+                  )}
+                </div>
               </div>
               <i className="fa fa-cog dropdown ">
                 <div

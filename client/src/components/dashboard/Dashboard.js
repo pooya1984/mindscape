@@ -72,15 +72,6 @@ const Dashboard = ({
                       <i className="fab fa-facebook fa-2x" />
                     </a>
                   )}
-                  {profile.social && profile.social.linkedin && (
-                    <a
-                      href={profile.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <i className="fab fa-linkedin fa-2x" />
-                    </a>
-                  )}
                   {profile.social && profile.social.youtube && (
                     <a
                       href={profile.social.youtube}

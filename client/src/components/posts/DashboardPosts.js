@@ -8,7 +8,7 @@ import PostItem from "./PostItem";
 import PostForm from "./PostForm";
 import { getPosts } from "../../actions/post";
 
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+const DashboardPosts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -17,8 +17,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Navbar />
-      <h1 className="large text-center text-secondary">New Posts</h1>
+      {/* <h1 className="large text-center text-secondary">New Posts</h1> */}
       {/* <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p> */}
@@ -35,7 +34,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   );
 };
 
-Posts.propTypes = {
+DashboardPosts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
@@ -44,4 +43,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts })(DashboardPosts);

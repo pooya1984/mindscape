@@ -10,9 +10,9 @@ import PostItem from "../posts/PostItem";
 
 const DashboardPost = ({
   getPostById,
-  post: { post, loading },
-  auth: { user },
-  match
+  post: { posts, loading },
+  // auth,
+  match,
 }) => {
   useEffect(() => {
     getPostById();
@@ -20,7 +20,19 @@ const DashboardPost = ({
 
   return (
     <Fragment>
-      {post === null || loading ? <Spinner /> : <Fragment>has</Fragment>}
+      {posts === null || loading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div className="profile-grid my-1">
+            {posts.map((post) => (
+              <PostItem key={post._id} post={post} />
+            ))}
+            {/* <ProfileAbout profile={profile} /> */}
+            <div className="profile-exp bg-white p-2"></div>
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
@@ -28,12 +40,12 @@ const DashboardPost = ({
 DashboardPost.propTypes = {
   getPostById: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  // auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
-  auth: state.auth
+  // auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getPostById })(DashboardPost);

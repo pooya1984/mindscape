@@ -38,9 +38,9 @@ const App = () => (
           <PrivateRoute exact path="/posts" component={Posts} />
           <PrivateRoute exact path="/post-form" component={PostForm} />
           <PrivateRoute exact path="/posts/:id" component={Post} />
-          <PrivateRoute
+          <Route
             exact
-            path="/dashboardPost/:id"
+            path="/dashboardPost/user/:id"
             component={DashboardPost}
           />
         </Switch>

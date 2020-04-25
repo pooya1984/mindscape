@@ -10,7 +10,7 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import { setAlert } from "../../actions/alert";
 import CreateProfile from "../profile-forms/CreateProfile";
 import UploadPic from "../profile-forms/UploadPic";
-import Posts from "../posts/Posts";
+import DashboardPosts from "../posts/DashboardPosts";
 import Alert from "../layout/Alert";
 import DashboardPost from "../post/DashboardPost";
 // import profilePic from "../../img/";
@@ -22,8 +22,8 @@ const Dashboard = ({
   profile: {
     // user: { _id },
     profile,
-    loading
-  }
+    loading,
+  },
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -125,13 +125,13 @@ const Dashboard = ({
           <Alert />
           <p className="lead p-4">Welcom {user && user.name}</p>
           <p>You have not yet setup a profile, please add some info</p>
-          <CreateProfile />
+          {/* <CreateProfile /> */}
         </Fragment>
       )}
 
-      {/* <Posts /> */}
-      {/* TODO: create user posts */}
-      <DashboardPost />
+{/* TODO: create user posts */}
+      <DashboardPosts />
+      {/* <DashboardPost /> */}
     </Fragment>
   );
 };
@@ -140,17 +140,17 @@ Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
-  post: state.post
+  post: state.post,
 });
 
 export default connect(mapStateToProps, {
   setAlert,
   getCurrentProfile,
-  deleteAccount
+  deleteAccount,
 })(Dashboard);

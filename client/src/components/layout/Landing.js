@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import logo from "../../img/DUBLAJ-logo.png";
+import logo from "../../img/mindscape.png";
 import Login from "../auth/Login";
 import Alert from "../layout/Alert";
 
@@ -12,11 +12,11 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <img className="logo" src={logo} />
       <div className="light-overlay">
-        <div className="landing-inner m-4">
+        <div className="landing-inner">
           <Alert />
           <Login />
           <p className=" m-1">Don't have an account?</p>
-          <Link to="/register" className="btn btn-success">
+          <Link to="/register" className="btn btn-outline-success">
             Sign Up
           </Link>
         </div>

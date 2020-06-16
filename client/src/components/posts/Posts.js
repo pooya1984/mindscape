@@ -18,18 +18,22 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   ) : (
     <Fragment>
       <Navbar />
-      <h1 className="large text-center text-secondary">New Posts</h1>
-      {/* <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
-      </p> */}
-      {/* <PostForm /> */}
-      <Link to="/post-form" type="button">
-        <i className="fas fa-plus-circle postForm" />
-      </Link>
-      <div className="posts">
-        {posts.map((post) => (
-          <PostItem key={post._id} post={post} />
-        ))}
+      <div
+        style={{
+          width: "50%",
+          alignItems: "center",
+          left: "25%",
+          position: "absolute",
+        }}
+      >
+        <Link to="/post-form" type="button">
+          <i class="fab fa-teamspeak postForm"></i>
+        </Link>
+        <div className="posts">
+          {posts.map((post) => (
+            <PostItem key={post._id} post={post} />
+          ))}
+        </div>
       </div>
     </Fragment>
   );

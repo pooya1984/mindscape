@@ -1,10 +1,12 @@
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
-  --dark-color: #1e2022;
+  --dark-color: #191a1b;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --light-gray-color: rgb(182, 178, 178);
+  --bg-color: rgb(37, 37, 37);
 }
 
 * {
@@ -13,17 +15,25 @@
   padding: 0;
 }
 
+audio {
+  background-color: red;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--bg-color);
+  color: rgb(240, 239, 239);
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--light-gray-color);
   text-decoration: none;
+}
+
+a :hover {
+  color: gray;
 }
 
 ul {
@@ -243,8 +253,17 @@ img {
   width: 100%;
   height: 100%;
 }
+.dark-bg-overlay {
+  background: url("./img/landing-bg.jpg") repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .light-overlay {
-  background-color: rgba(47, 124, 187, 0.438);
+  /* background-color: rgba(47, 124, 187, 0.438); */
   position: absolute;
   top: 0;
   left: 26%;
@@ -254,14 +273,28 @@ img {
 }
 
 /* Forms */
+
 .form .form-group {
   margin: 1.2rem 0;
+}
+.form-group input {
+  border-bottom: 1px solid var(--light-gray-color) !important;
+  color: var(--light-gray-color) !important;
+}
+
+.form-group ::placeholder {
+  color: var(--light-gray-color) !important;
 }
 
 .form .form-text {
   display: block;
   margin-top: 0.3rem;
   color: #888;
+}
+
+::placeholder {
+  color: white;
+  font-size: 15px;
 }
 
 .form input[type="text"],
@@ -274,8 +307,15 @@ img {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  font-family: Courier, monospace;
+  font-weight: bold;
+  text-align: center;
 }
 
 .form input[type="submit"],
@@ -319,27 +359,54 @@ button {
 }
 
 /* Navbar */
+
 .navbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   padding: 0.7rem 2rem;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
+  background-color: rgb(28, 27, 32);
+}
+.navbar-header {
+  width: 150px;
+}
+
+.fa-bars {
+  color: var(--light-gray-color) !important;
+  font-size: 2rem !important;
+}
+.nav-profile {
+  position: relative;
+  right: 130px;
+}
+
+.navbar h1 {
+  margin-bottom: 1rem;
+}
+
+.navbar .welcome {
+  display: none;
 }
 
 .navbar ul {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar a {
-  color: rgba(102, 99, 99, 0.541);
-  padding: 0.45rem;
-  margin: 0 0.25rem;
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: var(--light-color);
+  width: 100%;
+  font-size: 200%;
+  top: 0;
+  margin: 0 2.5rem;
+  text-align: right;
+  padding: 5px 50px;
+  text-decoration: none;
 }
 
 .navbar a:hover {
@@ -357,23 +424,20 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/landing-bg.jpg") no-repeat center center/cover;
+  background: url("./img/landing-bg.jpg") repeat center center/cover;
   height: 100vh;
 }
 .logo {
   position: absolute;
-  top: 3%;
-  left: 36%;
-  z-index: 1000;
-  max-width: 30%;
-  min-width: 100px;
-}
-.nav-logo {
-  width: 20%;
-  min-width: 10%;
+  width: 30%;
+  top: 13%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .landing-inner {
+  position: relative;
   color: #fff;
   height: 100%;
   width: 80%;
@@ -394,6 +458,51 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  left: 800px;
+}
+
+.dropdown-menu {
+  background-color: var(--bg-color) !important;
+}
+
+.profile-pic {
+  position: absolute;
+  width: 202.8px;
+  height: 202.8px;
+  left: 166px;
+  border: 2px solid white;
+  border-radius: 100px 100px 100px 100px;
+}
+
+.upload-pic {
+  opacity: 0.8;
+}
+
+.upload-pic-update {
+  position: absolute;
+  color: white;
+  left: 328px;
+  /* right: 112px; */
+  margin-top: 150px;
+  font-size: 200%;
+}
+
+.upload-pic :hover {
+  opacity: 1;
+}
+
+.dashboard-info {
+  position: absolute;
+  width: 200px;
+  left: 500px;
+}
+
+.border-info {
+  height: 250px;
 }
 
 /* Profiles Page */
@@ -503,20 +612,79 @@ button {
 /* Posts Page */
 .posts {
   display: flex;
-  padding: 1rem;
+  flex-direction: column;
+  padding: 2rem;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+.post-form {
+  padding: 10%;
+}
+
+.post-form-title h1 {
+  position: relative;
+  text-align: center;
+  top: 100px;
+  color: var(--light-gray-color);
 }
 .post-form .post-form-header {
   background: var(--primary-color);
   padding: 0.5rem;
 }
 
+.post-form button {
+  position: relative;
+  width: 20%;
+  left: 25%;
+  text-align: center;
+  margin: 2%;
+}
+
+.post-form .submit {
+  position: relative;
+  text-align: center;
+  margin-top: 8%;
+}
+
+.post-form .submit input {
+  width: 50%;
+}
+.post-form textarea ::placeholder {
+  color: aqua !important;
+}
 .post {
   display: grid;
   grid-template-columns: 1fr 4fr;
+  margin-top: 2rem;
   grid-gap: 2rem;
   align-items: center;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: rgba(66, 64, 64, 0.3);
+  padding: 6px;
+}
+
+.dashboard-post {
+  position: relative;
+  width: 60%;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: rgba(66, 64, 64, 0.3);
+  display: flex;
+  orientation: row;
+  left: 20%;
+  margin-top: 2rem;
+  padding: 2rem;
+  grid-gap: 2rem;
+  align-items: center;
+}
+
+.post-line {
+  position: relative;
+  left: 100%;
+  width: 400%;
+  margin-top: 20px;
+  border-bottom: 2px solid rgb(92, 90, 90);
 }
 
 .post > div:first-child {
@@ -536,14 +704,14 @@ button {
 }
 
 .post .post-date {
-  color: #aaa;
-  font-size: 0.8rem;
+  color: rgba(175, 171, 171, 0.6);
+  font-size: 0.6rem;
   margin-bottom: 0.5rem;
 }
 
 .postForm {
   color: brown;
-  font-size: 8rem;
+  font-size: 5rem;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -571,25 +739,6 @@ button {
 
   .lead {
     font-size: 1rem;
-  }
-
-  /* Navbar */
-  .navbar {
-    display: block;
-    text-align: center;
-  }
-
-  .navbar ul {
-    text-align: center;
-    justify-content: center;
-  }
-
-  .navbar h1 {
-    margin-bottom: 1rem;
-  }
-
-  .navbar .welcome {
-    display: none;
   }
 
   /* Profiles Page */
@@ -636,4 +785,38 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+}
+/* Modal CSS */
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
 }

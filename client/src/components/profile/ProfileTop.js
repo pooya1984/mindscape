@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import UserAvatar from "react-user-avatar";
 
 const ProfileTop = ({
   profile: {
     status,
     location,
     social,
-    user: { name, avatar }
-  }
+    user: { name, avatar, _id },
+  },
 }) => {
+  let src = "";
+  const srcf = async () => {
+    try {
+      src = require(`../../img/profilePics/${_id}.png`);
+    } catch (error) {
+      src = src;
+    }
+  };
+  srcf();
+
+  const followHandler = (e) => ({});
+
   return (
-    <div className="profile-top bg-primary p-2">
-      <img className="round-img my-1" src={avatar} alt="" />
+    <div className="profile-top p-2">
+      <UserAvatar size="200" name={name && name} src={src} />
       <h1 className="large">{name}</h1>
       <p className="lead">{status}</p>
       <p>{location && <span>{location}</span>}</p>
@@ -42,12 +55,18 @@ const ProfileTop = ({
           </a>
         )}
       </div>
+      <button
+        className="btn btn-outline-success"
+        followHandler={(e) => followHandler(e)}
+      >
+        Follow
+      </button>
     </div>
   );
 };
 
 ProfileTop.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileTop;

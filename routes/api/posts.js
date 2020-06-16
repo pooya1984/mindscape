@@ -5,38 +5,6 @@ const auth = require("../../middleware/auth");
 const Post = require("../../models/Post");
 const User = require("../../models/User");
 
-//  <----------------------  upload movie ---------------------------------->
-// const connectDB = require("../../config/db");
-// const bodyParser = require("body-parser");
-// const path = require("path");
-// const crypto = require("crypto");
-// const multer = require("multer");
-// const GridFsStorage = require("multer-gridfs-storage");
-// const Grid = require("gridfs-stream");
-// const methidOverride = require("method-override");
-
-// Create Storage engine
-// const storage = new GridFsStorage({
-//   url: connectDB,
-//   file: (req, file) => {
-//     return new Promise((resolve, reject) => {
-//       crypto.randomBytes(16, (err, buf) => {
-//         if (err) {
-//           return reject(err);
-//         }
-//         const filename = buf.toString("hex") + path.extname(file.originalname);
-//         const fileInfo = {
-//           filename: filename,
-//           bucketName: "uploads"
-//         };
-//         resolve(fileInfo);
-//       });
-//     });
-//   }
-// });
-// const upload = multer({ storage });
-//  <-------------------------------- end of upload movie ---------------------------------->
-
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
@@ -57,6 +25,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
+        blobURL: req.body.blobURL,
         user: req.user.id,
       });
 
@@ -130,7 +99,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const post = await Post.find({
       user: req.params.user_id,
-    });
+    }).populate("user", ["name", "avatar"]);
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });

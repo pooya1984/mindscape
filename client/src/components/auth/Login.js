@@ -8,34 +8,34 @@ import { login } from "../../actions/auth";
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const { email, password } = formData;
 
-  const onchange = e =>
+  const onchange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
 
   //Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/posts" />;
   }
 
   return (
     <Fragment>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="email"
             placeholder="Email Address"
             name="email"
             value={email}
-            onChange={e => onchange(e)}
+            onChange={(e) => onchange(e)}
           />
         </div>
         <div className="form-group">
@@ -44,11 +44,15 @@ const Login = ({ login, isAuthenticated }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={e => onchange(e)}
+            onChange={(e) => onchange(e)}
             minLength="6"
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <input
+          type="submit"
+          className="btn btn-outline-primary"
+          value="Sign In"
+        />
       </form>
     </Fragment>
   );
@@ -56,11 +60,11 @@ const Login = ({ login, isAuthenticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

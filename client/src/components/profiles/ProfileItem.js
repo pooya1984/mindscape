@@ -6,11 +6,11 @@ const ProfileItem = ({
   profile: {
     user: { _id, name, avatar },
     status,
-    location
-  }
+    location,
+  },
 }) => {
   return (
-    <div className="profile bg-light">
+    <div className="profile">
       <img src={avatar} alt="" className="round-img" />
       <div>
         <h2>{name}</h2>
@@ -25,7 +25,7 @@ const ProfileItem = ({
 };
 
 ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileItem;

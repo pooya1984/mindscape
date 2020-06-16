@@ -15,6 +15,7 @@ import PostForm from "./components/posts/PostForm";
 import Post from "./components/post/Post";
 import DashboardPost from "./components/post/DashboardPost";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import UploadPic from "./components/profile-forms/UploadPic";
 
 import "./App.css";
 
@@ -38,11 +39,13 @@ const App = () => (
           <PrivateRoute exact path="/posts" component={Posts} />
           <PrivateRoute exact path="/post-form" component={PostForm} />
           <PrivateRoute exact path="/posts/:id" component={Post} />
-          <Route
+          <PrivateRoute exact path="/upload-pic" component={UploadPic} />
+          <PrivateRoute
             exact
-            path="/dashboardPost/user/:id"
-            component={DashboardPost}
+            path="/create-profile"
+            component={CreateProfile}
           />
+          <Route exact path="/dashboardPost/:id" component={DashboardPost} />
         </Switch>
       </Fragment>
     </Router>

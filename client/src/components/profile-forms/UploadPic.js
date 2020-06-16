@@ -1,17 +1,17 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
 
-function UploadPic() {
+const UploadPic = () => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("change your profile pic");
   const [uploadedFile, setUploadedFile] = useState({});
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
@@ -19,8 +19,8 @@ function UploadPic() {
     try {
       const res = await axios.post("/api/upload", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       const { fileName, filePath } = res.data;
@@ -66,6 +66,6 @@ function UploadPic() {
       ) : null}
     </Fragment>
   );
-}
+};
 
 export default UploadPic;

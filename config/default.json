@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://pooyanodehi:aYst(+(>8bth@cluster0-giyuq.gcp.mongodb.net/test",
+  "jwtSecret": "mysecrettoken"
+}

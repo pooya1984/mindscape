@@ -361,22 +361,29 @@ button {
 /* Navbar */
 
 .navbar {
+  height: 100%; /* 100% Full-height */
+  width: 150px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   padding: 0.7rem 2rem;
-  width: 100%;
-  top: 0;
-  background-color: rgb(28, 27, 32);
+  background-color: var(--dark-color);
+  padding: 0.7rem 2rem;
 }
-.navbar-header {
-  width: 150px;
+
+.navbar-header img {
+  position: relative;
+  width: 130px;
+  right: 24px;
 }
 
 .fa-bars {
   color: var(--light-gray-color) !important;
   font-size: 2rem !important;
-}
-.nav-profile {
-  position: relative;
-  right: 130px;
 }
 
 .navbar h1 {
@@ -393,19 +400,13 @@ button {
   padding: 0;
 }
 
-.navbar li {
-  float: left;
-}
-
 .navbar li a {
   display: block;
   color: var(--light-color);
   width: 100%;
   font-size: 200%;
   top: 0;
-  margin: 0 2.5rem;
-  text-align: right;
-  padding: 5px 50px;
+  padding: 5px 10px;
   text-decoration: none;
 }
 
@@ -415,6 +416,10 @@ button {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+.fa-power-off {
+  color: var(--danger-color);
 }
 
 .guestLinks {
@@ -501,8 +506,11 @@ button {
   left: 500px;
 }
 
-.border-info {
+.border-secondary {
+  position: relative;
+  width: 900px;
   height: 250px;
+  left: 150px;
 }
 
 /* Profiles Page */
@@ -618,7 +626,7 @@ button {
   justify-content: space-around;
 }
 .post-form {
-  padding: 10%;
+  padding: 6% 15%;
 }
 
 .post-form-title h1 {
@@ -678,6 +686,11 @@ button {
   grid-gap: 2rem;
   align-items: center;
 }
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+  overflow-wrap: break-word;
+}
 
 .post-line {
   position: relative;
@@ -703,7 +716,7 @@ button {
   font-size: 0.8rem;
 }
 
-.post .post-date {
+.post-date {
   color: rgba(175, 171, 171, 0.6);
   font-size: 0.6rem;
   margin-bottom: 0.5rem;

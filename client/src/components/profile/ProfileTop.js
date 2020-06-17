@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import UserAvatar from "react-user-avatar";
 
@@ -7,7 +7,7 @@ const ProfileTop = ({
     status,
     location,
     social,
-    user: { name, avatar, _id },
+    user: { name, _id },
   },
 }) => {
   let src = "";
@@ -15,7 +15,7 @@ const ProfileTop = ({
     try {
       src = require(`../../img/profilePics/${_id}.png`);
     } catch (error) {
-      src = src;
+      src = "";
     }
   };
   srcf();
@@ -55,9 +55,10 @@ const ProfileTop = ({
           </a>
         )}
       </div>
+      {/* follower button */}
       <button
         className="btn btn-outline-success"
-        followHandler={(e) => followHandler(e)}
+        // followHandler={(e) => followHandler(e)}
       >
         Follow
       </button>

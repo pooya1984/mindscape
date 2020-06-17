@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import Navbar from "../../components/layout/Navbar";
 import PostItem from "./PostItem";
-import PostForm from "./PostForm";
 import { getPosts } from "../../actions/post";
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -27,7 +26,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         }}
       >
         <Link to="/post-form" type="button">
-          <i class="fab fa-teamspeak postForm"></i>
+          <i className="fab fa-teamspeak postForm"></i>
         </Link>
         <div className="posts">
           {posts.map((post) => (

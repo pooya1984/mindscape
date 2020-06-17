@@ -2,9 +2,6 @@ import React from "react";
 import MicRecorder from "mic-recorder-to-mp3";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
-// const crtDisplay = {
-//   display: "none",
-// };
 
 class PostAudio extends React.Component {
   constructor(props) {

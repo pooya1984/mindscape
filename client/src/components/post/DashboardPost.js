@@ -4,25 +4,13 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
-import UserAvatar from "react-user-avatar";
 
 const PostItem = ({
   addLike,
   removeLike,
   deletePost,
   auth,
-  post: {
-    _id,
-    text,
-    title,
-    name,
-    avatar,
-    blobURL,
-    user,
-    likes,
-    comments,
-    date,
-  },
+  post: { _id, text, blobURL, user, likes, comments, date },
   showActions,
 }) => {
   let src = "";
@@ -37,8 +25,8 @@ const PostItem = ({
 
   return user === auth.user._id ? (
     <div className="dashboard-post">
-      <div>
-        <p className="my-1">{title}</p>
+      <div className="wrapper">
+        {/* <p className="my-1">{title}</p> */}
         <p className="my-1">{text}</p>
         {blobURL && <audio src={blobURL} controls="controls" />}
 

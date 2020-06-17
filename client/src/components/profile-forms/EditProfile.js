@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
@@ -22,7 +22,7 @@ const EditProfile = ({
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    getCurrentProfile();
+    getCurrentProfile([getCurrentProfile]);
 
     setFormData({
       location: loading || !profile.location ? "" : profile.location,

@@ -10,7 +10,7 @@ const Landing = ({ isAuthenticated }) => {
   }
   return (
     <section className="landing">
-      <img className="logo" src={logo} />
+      <img className="logo" alt="logo" src={logo} />
       <div className="light-overlay">
         <div className="landing-inner">
           <Alert />

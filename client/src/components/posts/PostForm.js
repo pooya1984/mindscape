@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addPost } from "../../actions/post";
 import MicRecorder from "mic-recorder-to-mp3";
 import Navbar from "../layout/Navbar";
-// import PostAudio from "./PostAudio";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -16,11 +15,6 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
     blobURL: "",
     isBlocked: false,
   });
-  // const [audio, setAudio] = useState({
-  //   isRecording: false,
-  //   blobURL: "",
-  //   isBlocked: false,
-  // });
 
   const { isRecording, blobURL, isBlocked, title, text } = formData;
 
@@ -42,7 +36,6 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob);
         setFormData({ blobURL, isRecording: false });
-        // this.setState((this.crt.style.crtDisplay = "block"));
       })
 
       .catch((e) => console.log(e));
@@ -68,51 +61,27 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
       title: "",
       blobURL: "",
     });
-    // setAudio({
-    //   isRecording: false,
-    //   blobURL: "hfher",
-    //   isBlocked: false,
-    // });
   };
-
-  // const { title, text } = formData;
 
   return (
     <Fragment>
       <Navbar />
-      {/* <div className="post-form-title">
-        <h1>Free your Mind</h1>
-      </div> */}
       <div className="post-form">
         <form className="form my-1" onSubmit={(e) => onSubmit(e)}>
           <button
-            class="btn btn-outline-success"
+            className="btn btn-outline-success"
             onClick={start}
             disabled={isRecording}
           >
             Record
           </button>
           <button
-            class="btn btn-outline-danger"
+            className="btn btn-outline-danger"
             onClick={stop}
             disabled={!isRecording}
           >
             Stop
           </button>
-          {/* <audio
-          src={blobURL}
-          controls="controls"
-        /> */}
-          {/* <textarea
-            className="form-control"
-            name="title"
-            cols="5"
-            rows="1"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => onChange(e)}
-            required
-          /> */}
           <textarea
             className="form-control border border-primary"
             name="text"
@@ -123,6 +92,8 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
             onChange={(e) => onChange(e)}
             required
           />
+
+          {/* TODO: it should be liked in posts component */}
           <div className="submit">
             <input
               type="submit"
@@ -146,45 +117,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { addPost })(PostForm);
-
-// import React, { useState } from "react";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { addPost } from "../../actions/post";
-
-// const PostForm = ({ addPost }) => {
-//   const [text, setText] = useState("");
-
-//   return (
-//     <div className="post-form">
-//       <div className="bg-primary p">
-//         <h3>Say Something...</h3>
-//       </div>
-//       <form
-//         className="form my-1"
-//         onSubmit={e => {
-//           e.preventDefault();
-//           addPost({ text });
-//           setText("");
-//         }}
-//       >
-//         <textarea
-//           name="text"
-//           cols="30"
-//           rows="5"
-//           placeholder="Create a post"
-//           value={text}
-//           onChange={e => setText(e.target.value)}
-//           required
-//         />
-//         <input type="submit" className="btn btn-dark my-1" value="Submit" />
-//       </form>
-//     </div>
-//   );
-// };
-
-// PostForm.propTypes = {
-//   addPost: PropTypes.func.isRequired
-// };
-
-// export default connect(null, { addPost })(PostForm);

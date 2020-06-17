@@ -11,18 +11,7 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: {
-    _id,
-    text,
-    title,
-    name,
-    avatar,
-    blobURL,
-    user,
-    likes,
-    comments,
-    date,
-  },
+  post: { _id, text, title, name, blobURL, user, likes, comments, date },
   showActions,
 }) => {
   let src = "";
@@ -30,39 +19,23 @@ const PostItem = ({
     try {
       src = require(`../../img/profilePics/${user}.png`);
     } catch (error) {
-      src = src;
+      src = "";
     }
   };
   srcf();
 
   return (
     <div className="post">
+      {/* Profile Picture */}
       <div>
-        {/* TODO:find a solution for posts pic */}
         <Link to={`/profile/${user}`}>
           <UserAvatar size="100" name={name && name} src={src} />
-          {/* {!user._id ? (
-          <UserAvatar size="100" name={user && user.name} />
-        ) : (
-          <UserAvatar
-            size="100"
-            name={auth.user && auth.user.name}
-            src={require(`../../img/profilePics/${user._id}.png`)}
-          />
-        )} */}
           <h4 className="text-secondary">{name}</h4>
         </Link>
       </div>
 
-      {/* TODO: finde a way to get post by ID */}
-      {/* <div>
-      <Link to={`/dashboardPost/${user}`}>
-        <img className="round-img" src={avatar} alt="" />
-        <h4 className="text-secondary">{name}</h4>
-      </Link>
-    </div> */}
-
-      <div>
+      {/* Posts Items */}
+      <div className="wrapper">
         <p className="my-1">{title}</p>
         <p className="my-1">{text}</p>
         {blobURL && <audio src={blobURL} controls="controls" />}
@@ -71,6 +44,7 @@ const PostItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
 
+        {/* Like and Comments stuff */}
         {showActions && (
           <Fragment>
             <button
@@ -89,7 +63,7 @@ const PostItem = ({
               <i className="fas fa-thumbs-down" />
             </button>
             <Link to={`/posts/${_id}`} className="btn btn-outline-secondary">
-              <i class="far fa-comments" />{" "}
+              <i className="far fa-comments" />{" "}
               {comments.length > 0 && (
                 <span className="comment-count">{comments.length}</span>
               )}

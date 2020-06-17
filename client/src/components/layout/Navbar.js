@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-import logo from "../../img/mindscape.png";
+import logo from "../../img/mindnav.png";
 
 const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   let src = "";
@@ -12,14 +12,14 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     try {
       src = require(`../../img/profilePics/${user._id}.png`);
     } catch (error) {
-      src = src;
+      src = "";
     }
   };
   srcf();
 
   const authLinks = (
     <Fragment>
-      <Fragment className="nav-profile">
+      <Fragment>
         <Link to="/dashboard">
           <UserAvatar size="50" name={user && user.name} src={src} />
         </Link>
@@ -27,7 +27,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
       {/* <!-- Collapse button --> */}
       <button
-        class="navbar-toggler toggler-example"
+        className="navbar-toggler toggler-example"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent1"
@@ -35,23 +35,30 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="light-text">
-          <i class="fas fa-bars fa-1x"></i>
+        <span className="light-text">
+          <i className="fas fa-bars fa-1x"></i>
         </span>
       </button>
 
       {/* <!-- Collapsible content --> */}
-      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent1">
         {/* <!-- Links --> */}
-        <ul className="navbar-nav mr-auto">
+        <ul className="navbar-nav col mr-auto">
           <li className="nav-item">
             <Link to="/posts">
-              <i class="fab fa-mendeley"></i> <span className="hide-sm"></span>
+              <i className="fab fa-mendeley"></i>{" "}
+              <span className="hide-sm"></span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/post-form">
+              <i className="fab fa-teamspeak"></i>{" "}
+              <span className="hide-sm"></span>
             </Link>
           </li>
           <li className="nav-item">
             <a onClick={logout} href="/">
-              <i class="fas fa-power-off danger"></i>
+              <i className="fas fa-power-off"></i>
               <span className="hide-sm"></span>
             </a>
           </li>
@@ -60,12 +67,16 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     </Fragment>
   );
 
-  const guestLinks = <div className="guestLinks"></div>;
+  const guestLinks = (
+    <div className="guestLinks">
+      <div style={{ color: "white" }}>Sign In</div>
+    </div>
+  );
 
   return (
     <nav className="navbar ">
-      <div class="navbar-header navbar-brand">
-        <img alt="DUBLAJ" src={logo} />
+      <div className="navbar-header navbar-brand">
+        <img alt="mindscape" src={logo} />
       </div>
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

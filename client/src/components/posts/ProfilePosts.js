@@ -11,18 +11,7 @@ const ProfilePosts = ({
   removeLike,
   deletePost,
   auth,
-  post: {
-    _id,
-    text,
-    title,
-    name,
-    avatar,
-    blobURL,
-    user,
-    likes,
-    comments,
-    date,
-  },
+  post: { _id, text, title, name, blobURL, user, likes, comments, date },
   showActions,
 }) => {
   let src = "";
@@ -37,29 +26,13 @@ const ProfilePosts = ({
   return user === auth.user._id ? (
     <div className="post">
       <div>
-        {/* TODO:find a solution for posts pic */}
+        {/* posts picture */}
         <Link to={`/profile/${user}`}>
           <UserAvatar size="100" name={name && name} src={src} />
-          {/* {!user._id ? (
-          <UserAvatar size="100" name={user && user.name} />
-        ) : (
-          <UserAvatar
-            size="100"
-            name={auth.user && auth.user.name}
-            src={require(`../../img/profilePics/${user._id}.png`)}
-          />
-        )} */}
+
           <h4 className="text-secondary">{name}</h4>
         </Link>
       </div>
-
-      {/* TODO: finde a way to get post by ID */}
-      {/* <div>
-      <Link to={`/dashboardPost/${user}`}>
-        <img className="round-img" src={avatar} alt="" />
-        <h4 className="text-secondary">{name}</h4>
-      </Link>
-    </div> */}
 
       <div>
         <p className="my-1">{title}</p>

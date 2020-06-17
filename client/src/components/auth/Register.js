@@ -49,10 +49,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               onChange={(e) => onchange(e)}
               placeholder="Enter your Email"
             />
-            {/* <small className="form-text">
-              This site uses Gravatar so if you want a profile image, use a
-              Gravatar email
-            </small> */}
             <input
               className="text-center lead"
               type="text"

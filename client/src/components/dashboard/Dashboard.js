@@ -9,12 +9,9 @@ import DashboardActions from "./DashboardActions";
 import Navbar from "../../components/layout/Navbar";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import { setAlert } from "../../actions/alert";
-import CreateProfile from "../profile-forms/CreateProfile";
 import UploadPic from "../profile-forms/UploadPic";
-import DashboardPosts from "../posts/DashboardPosts";
 import Alert from "../layout/Alert";
 import DashboardPost from "../post/DashboardPost";
-// import profilePic from "../../img/";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -32,7 +29,7 @@ const Dashboard = ({
     try {
       src = require(`../../img/profilePics/${user._id}.png`);
     } catch (error) {
-      src = src;
+      src = "";
     }
   };
   srcf();
@@ -49,15 +46,16 @@ const Dashboard = ({
       <Navbar />
       {profile !== null ? (
         <Fragment>
-          <div className="m-5 border border-info border-top-0 border-left-0 border-right-0 ">
+          <div className="m-5 border border-secondary border-top-0 border-left-0 border-right-0 ">
             <section className="m-5 p-3 d-flex justify-content-around">
+              {/* Profile Picture */}
               <UserAvatar
                 className="profile-pic"
                 size="200"
                 name={user && user.name}
                 src={src}
               />
-              {/* <Link className="upload-pic" to="/upload-pic"> */}
+              {/* Change Profile picture */}
               <i
                 variant="primary"
                 onClick={handleShow}
@@ -128,6 +126,7 @@ const Dashboard = ({
                   id="navbardrop"
                   data-toggle="dropdown"
                 ></div>
+                {/* Setting menu */}
                 <div className="dropdown-menu border-0 bg-dark">
                   <DashboardActions />{" "}
                   <div className="my-2">
@@ -142,13 +141,10 @@ const Dashboard = ({
                 </div>
               </i>
               <Link to="/post-form" type="button">
-                <i class="fab fa-teamspeak postForm"></i>
+                <i className="fab fa-teamspeak postForm"></i>
               </Link>
             </section>
           </div>
-          {/* <Link to={`/dashboardPost/${_id}`} className="btn btn-primary">
-            View posts
-          </Link> */}
         </Fragment>
       ) : (
         <Fragment>
@@ -171,13 +167,12 @@ const Dashboard = ({
           </div>
         </Fragment>
       )}
-      {/* TODO: create user posts */}
+      {/* create user posts */}
       <Fragment>
         {posts.map((post) => (
           <DashboardPost key={post._id} post={post} />
         ))}{" "}
       </Fragment>{" "}
-      {/* <DashboardPost /> */}
     </Fragment>
   );
 };

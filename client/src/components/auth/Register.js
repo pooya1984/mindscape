@@ -41,43 +41,45 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <div className="landing-inner my-4">
           <Alert />
           <form className="form" onSubmit={(e) => onSubmit(e)}>
-            <input
-              className="text-center lead"
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => onchange(e)}
-              placeholder="Enter your Email"
-            />
-            <input
-              className="text-center lead"
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => onchange(e)}
-              placeholder="User name"
-            />
-            <input
-              className="text-center lead"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => onchange(e)}
-              placeholder="Password"
-            />
-            <input
-              className="text-center lead"
-              type="password"
-              name="password2"
-              value={password2}
-              onChange={(e) => onchange(e)}
-              placeholder="Confirm Password"
-            />
-            <input
-              type="submit"
-              value="Register"
-              className="btn p-3 btn-outline-success"
-            />
+            <div className="form-group">
+              <input
+                className="text-center lead"
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => onchange(e)}
+                placeholder="Enter your Email"
+              />
+              <input
+                className="text-center lead"
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => onchange(e)}
+                placeholder="User name"
+              />
+              <input
+                className="text-center lead"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => onchange(e)}
+                placeholder="Password"
+              />
+              <input
+                className="text-center lead"
+                type="password"
+                name="password2"
+                value={password2}
+                onChange={(e) => onchange(e)}
+                placeholder="Confirm Password"
+              />
+              <input
+                type="submit"
+                value="Register"
+                className="btn p-3 btn-outline-success"
+              />
+            </div>
             <p className=" m-1">Already have an account?</p>
             <Link to="/" className="btn btn-outline-primary">
               Log In

@@ -26,7 +26,6 @@ const PostItem = ({
 
   return (
     <div className="post">
-      {/* Profile Picture */}
       <div>
         <Link to={`/profile/${user}`}>
           <UserAvatar size="100" name={name && name} src={src} />
@@ -34,7 +33,6 @@ const PostItem = ({
         </Link>
       </div>
 
-      {/* Posts Items */}
       <div className="wrapper">
         <p className="my-1">{title}</p>
         <p className="my-1">{text}</p>
@@ -44,7 +42,6 @@ const PostItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
 
-        {/* Like and Comments stuff */}
         {showActions && (
           <Fragment>
             <button

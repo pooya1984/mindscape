@@ -20,7 +20,7 @@ const ProfileTop = ({
   };
   srcf();
 
-  const followHandler = (e) => ({});
+  // const followHandler = (e) => ({});
 
   return (
     <div className="profile-top p-2">

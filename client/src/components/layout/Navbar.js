@@ -24,6 +24,11 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           <UserAvatar size="50" name={user && user.name} src={src} />
         </Link>
       </Fragment>
+      <li className="nav-item">
+        <Link to="/posts">
+          <i class="fas fa-swatchbook"></i> <span className="hide-sm"></span>
+        </Link>
+      </li>
 
       {/* <!-- Collapse button --> */}
       <button
@@ -44,12 +49,12 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent1">
         {/* <!-- Links --> */}
         <ul className="navbar-nav col mr-auto">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to="/posts">
               <i className="fab fa-mendeley"></i>{" "}
               <span className="hide-sm"></span>
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link to="/post-form">
               <i className="fab fa-teamspeak"></i>{" "}

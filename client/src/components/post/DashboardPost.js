@@ -13,16 +13,6 @@ const PostItem = ({
   post: { _id, text, blobURL, user, likes, comments, date },
   showActions,
 }) => {
-  let src = "";
-  const srcf = async () => {
-    try {
-      src = require(`../../img/profilePics/${user}.png`);
-    } catch (error) {
-      src = src;
-    }
-  };
-  srcf();
-
   return user === auth.user._id ? (
     <div className="dashboard-post">
       <div className="wrapper">
@@ -52,7 +42,7 @@ const PostItem = ({
               <i className="fas fa-thumbs-down" />
             </button>
             <Link to={`/posts/${_id}`} className="btn btn-outline-secondary">
-              <i class="far fa-comments" />{" "}
+              <i className="far fa-comments" />{" "}
               {comments.length > 0 && (
                 <span className="comment-count">{comments.length}</span>
               )}

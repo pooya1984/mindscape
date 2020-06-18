@@ -16,7 +16,7 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
     isBlocked: false,
   });
 
-  const { isRecording, blobURL, isBlocked, title, text } = formData;
+  const { isRecording, isBlocked, text } = formData;
 
   const start = () => {
     if (isBlocked) {
@@ -49,7 +49,7 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
       title: "",
       blobURL: "",
     });
-  }, [loading, addPost]);
+  }, [loading, addPost, match.params.id]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

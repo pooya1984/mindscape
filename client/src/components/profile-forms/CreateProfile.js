@@ -35,13 +35,6 @@ const CreateProfile = ({
     <Redirect to="/dashboard" />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Let's get some information to make your
-        profile stand out
-      </p>
-      <UploadPic />
-
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input

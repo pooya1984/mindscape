@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
@@ -26,7 +26,10 @@ const Profile = ({ getProfileById, profile: { profile, loading }, match }) => {
   return (
     <Fragment>
       {profile === null || loading ? (
-        <Spinner />
+        <Fragment>
+          <Spinner />
+          <div style={{ textAlign: "center" }}>There is no profile yet</div>
+        </Fragment>
       ) : (
         <Fragment>
           <Navbar />

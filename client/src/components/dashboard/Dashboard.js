@@ -12,17 +12,19 @@ import { setAlert } from "../../actions/alert";
 import UploadPic from "../profile-forms/UploadPic";
 import Alert from "../layout/Alert";
 import DashboardPost from "../post/DashboardPost";
+import CreateProfile from "../profile-forms/CreateProfile";
 
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   post: { posts },
-  auth: { user, avatar },
+  auth: { user },
+  match,
   profile: { profile, loading },
 }) => {
   useEffect(() => {
-    getCurrentProfile();
-  }, [getCurrentProfile]);
+    getCurrentProfile(match.params.id);
+  }, [getCurrentProfile, match.params.id]);
 
   let src = "";
   const srcf = async () => {
@@ -35,9 +37,12 @@ const Dashboard = ({
   srcf();
 
   const [show, setShow] = useState(false);
+  const [showPic, setShowPic] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClosePic = () => setShowPic(false);
+  const handleShowPic = () => setShowPic(true);
 
   return loading && profile === null ? (
     <Spinner />
@@ -148,22 +153,67 @@ const Dashboard = ({
         </Fragment>
       ) : (
         <Fragment>
-          <Alert />
-          <p className="lead p-4">Welcom {user && user.name}</p>
-          <p>You have not yet setup a profile, please add some info</p>
-          <div className="my-2">
-            <button
-              type="button"
-              className="btn btn-outline-danger btn-sm"
-              onClick={() => deleteAccount()}
-            >
-              Delete Account
-            </button>
-          </div>
-          <div>
-            <Link to={`/create-profile`}>
-              <h4 className="text-secondary">CreateProfile</h4>
-            </Link>
+          <div className="m-5 dashboard-welcome border border-secondary border-top-0 border-left-0 border-right-0 ">
+            <UserAvatar
+              className="welcome-pic"
+              size="200"
+              name={user && user.name}
+              src={src}
+            />
+            <i
+              variant="primary"
+              onClick={handleShowPic}
+              className="fa fa-camera upload-pic-new"
+            ></i>
+            <Modal show={showPic} onHide={handleClosePic}>
+              <Modal.Header closeButton>
+                <Modal.Title>Change your profile picture</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <UploadPic />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClosePic}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+            <div className=" welcome-text">
+              <p>Welcom {user && user.name}</p>
+              <p>You have not yet setup a profile, please add some info</p>
+              <div className="my-2">
+                <button
+                  type="button"
+                  className="btn btn-outline-danger btn-sm"
+                  onClick={() => deleteAccount()}
+                >
+                  Delete Account
+                </button>
+              </div>
+              <div>
+                <div
+                  type="button"
+                  onClick={handleShow}
+                  className="btn btn-outline-success btn-sm"
+                >
+                  CreateProfile
+                </div>
+
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Create your Profile</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <CreateProfile />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </div>
           </div>
         </Fragment>
       )}

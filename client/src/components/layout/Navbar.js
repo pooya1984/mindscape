@@ -26,7 +26,8 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       </Fragment>
       <li className="nav-item">
         <Link to="/posts">
-          <i class="fas fa-swatchbook"></i> <span className="hide-sm"></span>
+          <i className="fas fa-swatchbook"></i>{" "}
+          <span className="hide-sm"></span>
         </Link>
       </li>
 
@@ -49,12 +50,12 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent1">
         {/* <!-- Links --> */}
         <ul className="navbar-nav col mr-auto">
-          {/* <li className="nav-item">
-            <Link to="/posts">
+          <li className="nav-item">
+            <Link to={`/follower/${user && user._id}`}>
               <i className="fab fa-mendeley"></i>{" "}
               <span className="hide-sm"></span>
             </Link>
-          </li> */}
+          </li>
           <li className="nav-item">
             <Link to="/post-form">
               <i className="fab fa-teamspeak"></i>{" "}

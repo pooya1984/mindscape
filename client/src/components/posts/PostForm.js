@@ -93,7 +93,7 @@ const PostForm = ({ addPost, post: { posts, loading }, match }) => {
             required
           />
 
-          {/* TODO: it should be liked in posts component */}
+          {/* TODO: it should be linked in posts component */}
           <div className="submit">
             <input
               type="submit"

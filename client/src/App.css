@@ -6,7 +6,8 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
   --light-gray-color: rgb(182, 178, 178);
-  --bg-color: rgb(37, 37, 37);
+  --bg-color: rgb(57, 63, 70);
+  --nav-color: rgba(27, 30, 32, 0.5);
 }
 
 * {
@@ -20,6 +21,7 @@ audio {
 }
 
 body {
+  flex: 1;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
@@ -258,7 +260,7 @@ img {
   height: 100%;
 }
 .dark-bg-overlay {
-  background: url("./img/landing-bg.jpg") repeat center center/cover;
+  /* background: url("./img/landing-bg.jpg") repeat center center/cover; */
   position: absolute;
   top: 0;
   left: 0;
@@ -308,15 +310,14 @@ img {
 .form select,
 .form textarea {
   display: block;
-  width: 100%;
+  width: 110%;
   padding: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 15px;
   outline: none;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fff;
   color: #fff;
-  font-size: 20px;
   font-family: Courier, monospace;
   font-weight: bold;
   text-align: center;
@@ -375,7 +376,7 @@ button {
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   padding: 0.7rem 2rem;
-  background-color: var(--dark-color);
+  background-color: var(--nav-color);
   padding: 0.7rem 2rem;
 }
 
@@ -431,7 +432,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/landing-bg.jpg") repeat center center/cover;
+  /* background: url("./img/landing-bg.jpg") repeat center center/cover; */
   height: 100vh;
 }
 .logo {
@@ -575,6 +576,20 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+.follower-top {
+  position: relative;
+  left: 200px;
+  flex-direction: column;
+}
+
+.follower-top div {
+  margin: 6px;
+}
+
+.xxx {
+  position: absolute;
+  left: 400px;
 }
 
 .profile-top img {

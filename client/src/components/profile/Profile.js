@@ -44,7 +44,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, match }) => {
         className="btn btn-outline-success"
         followHandler={(e) => followHandler(e)}
       >
-        Follow
+        Follow 
       </button> */}
       {/* <Fragment>
         {posts.map((post) => (

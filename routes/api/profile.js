@@ -12,7 +12,7 @@ const User = require("../../models/User");
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.user.id
+      user: req.user.id,
     }).populate("user", ["name", "email", "avatar"]);
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -30,7 +30,7 @@ router.get("/me", auth, async (req, res) => {
 router.post(
   "/",
   [
-    auth
+    auth,
     // [
     //   check("location", "Status is required")
     //     .not()
@@ -49,7 +49,7 @@ router.post(
       youtube,
       twitter,
       facebook,
-      instagram
+      instagram,
     } = req.body;
 
     // Build Profile Object
@@ -99,7 +99,7 @@ router.get("/", async (req, res) => {
 router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate("user", ["name", "avatar"]);
 
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
@@ -127,6 +127,37 @@ router.delete("/", auth, async (req, res) => {
     await User.findOneAndRemove({ _id: req.user.id });
 
     res.json({ msg: "User deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    PROFILE api/profile/follower/:id
+// @desc     follow a user
+// @access   Private
+router.post("/follower/:id", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const profile = await Profile.findById(req.params.id);
+
+    const newFollower = {
+      location: req.body.location,
+      status: req.body.status,
+      name: req.body.name,
+      user: req.user.id,
+    };
+
+    profile.followers.unshift(newFollower);
+
+    await profile.save();
+
+    res.json(profile.followers);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

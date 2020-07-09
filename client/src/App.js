@@ -16,6 +16,7 @@ import Post from "./components/post/Post";
 import DashboardPost from "./components/post/DashboardPost";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import UploadPic from "./components/profile-forms/UploadPic";
+import Follower from "./components/profile/Follower";
 
 import "./App.css";
 
@@ -27,6 +28,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/follower/:id" component={Follower} />
           <Route exact path="/profiles" component={Profiles} />
           <Route exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />

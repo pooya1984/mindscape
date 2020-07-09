@@ -6,7 +6,9 @@ import {
   GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
+  ADD_FOLLOWER,
   ACCOUNT_DELETED,
+  ADD_FOLLOWERS,
 } from "./types";
 
 // Get current users profile
@@ -92,6 +94,35 @@ export const createProfile = (formData, history, edit = false) => async (
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// // Add follower
+export const addFollower = (profileId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      `/api/profile/follower/${profileId}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_FOLLOWER,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("success"));
+  } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },

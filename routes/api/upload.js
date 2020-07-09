@@ -13,14 +13,14 @@ router.post("/", auth, (req, res) => {
 
   const file = req.files.file;
   const user = req.user.id;
-  file.mv(`client/src/img/profilePics/${user}.png`, err => {
+  file.mv(`client/src/img/profilePics/${user}.png`, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
     }
     res.json({
       fileName: user,
-      filePath: `/uploads/profilePics/${user}`
+      filePath: `/uploads/profilePics/${user}`,
     });
   });
 });

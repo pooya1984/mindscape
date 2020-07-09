@@ -2,17 +2,18 @@ import {
   GET_PROFILE,
   PROFILE_ERROR,
   CLEAR_PROFILE,
-  GET_PROFILES
+  ADD_FOLLOWER,
+  GET_PROFILES,
 } from "../actions/types";
 
 const initialState = {
   profile: null,
   profiles: [],
   loading: true,
-  error: {}
+  error: {},
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -20,26 +21,32 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: payload,
-        loading: false
+        loading: false,
       };
     case GET_PROFILES:
       return {
         ...state,
         profiles: payload,
-        loading: false
+        loading: false,
       };
     case PROFILE_ERROR:
       return {
         ...state,
         error: payload,
         loading: false,
-        profile: null
+        profile: null,
       };
     case CLEAR_PROFILE:
       return {
         ...state,
         profile: null,
-        loading: false
+        loading: false,
+      };
+    case ADD_FOLLOWER:
+      return {
+        ...state,
+        profile: { ...state.profile, comments: payload },
+        loading: false,
       };
     default:
       return state;

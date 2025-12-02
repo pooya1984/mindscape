@@ -1,0 +1,58 @@
+/* Force remove all Ionic default backgrounds */
+
+/* Disable :host backgrounds globally */
+:host {
+  --background: transparent !important;
+}
+
+/* Disable all default background variables */
+* {
+  --ion-background-color-step-50: transparent;
+  --ion-background-color-step-100: transparent;
+  --ion-background-color-step-150: transparent;
+  --ion-background-color-step-200: transparent;
+  --ion-background-color-step-250: transparent;
+  --ion-background-color-step-300: transparent;
+  --ion-background-color-step-350: transparent;
+  --ion-background-color-step-400: transparent;
+  --ion-background-color-step-450: transparent;
+  --ion-background-color-step-500: transparent;
+  --ion-background-color-step-550: transparent;
+  --ion-background-color-step-600: transparent;
+  --ion-background-color-step-650: transparent;
+  --ion-background-color-step-700: transparent;
+  --ion-background-color-step-750: transparent;
+  --ion-background-color-step-800: transparent;
+  --ion-background-color-step-850: transparent;
+  --ion-background-color-step-900: transparent;
+  --ion-background-color-step-950: transparent;
+}
+
+/* Remove card default backgrounds */
+ion-card {
+  --background: transparent !important;
+  --color: var(--ion-text-color);
+}
+
+ion-card::part(native) {
+  background: transparent !important;
+}
+
+/* Override tab-bar defaults */
+ion-tab-bar {
+  --color: var(--ion-text-color);
+  --color-selected: var(--ion-color-primary);
+  --background: transparent !important;
+}
+
+ion-tab-bar::part(native) {
+  background: transparent !important;
+}
+
+ion-tab-button {
+  --color: var(--ion-text-color);
+  --color-selected: var(--ion-color-primary);
+  --background: transparent;
+  --background-focused: transparent;
+  --background-hover: rgba(17, 133, 254, 0.1);
+}

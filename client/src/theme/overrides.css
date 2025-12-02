@@ -1,0 +1,32 @@
+/* Global Ionic Overrides - Force our theme */
+
+/* Override all :host backgrounds */
+:host {
+  --background: transparent !important;
+}
+
+/* Remove default Ionic card backgrounds */
+ion-card::part(native) {
+  background: transparent !important;
+}
+
+ion-item::part(native) {
+  background: transparent !important;
+}
+
+ion-content::part(background) {
+  background: transparent !important;
+}
+
+ion-tab-bar::part(native) {
+  background: transparent !important;
+}
+
+/* Ensure our custom backgrounds apply */
+ion-item {
+  background: var(--ion-item-background) !important;
+}
+
+ion-toolbar {
+  background: var(--ion-toolbar-background) !important;
+}

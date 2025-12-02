@@ -1,0 +1,318 @@
+/* Glassmorphism Theme - Bluesky Inspired */
+
+/* Override Ionic defaults */
+:host {
+  --background: transparent !important;
+}
+
+:root {
+  /* Primary Bluesky Colors */
+  --ion-color-primary: #1185fe;
+  --ion-color-primary-rgb: 17, 133, 254;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0f75e0;
+  --ion-color-primary-tint: #2991fe;
+
+  /* Background Colors - Dark blue gradient */
+  --ion-background-color: #0a1929;
+  --ion-background-color-rgb: 10, 25, 41;
+  
+  /* Card/Surface Colors - Glass effect with dark blue tint */
+  --ion-card-background: rgba(15, 35, 60, 0.7);
+  --ion-item-background: rgba(15, 35, 60, 0.6);
+  
+  /* Text Colors */
+  --ion-text-color: #e7edf4;
+  --ion-text-color-rgb: 231, 237, 244;
+  --ion-color-step-550: #94a3b8;
+  
+  /* Toolbar */
+  --ion-toolbar-background: rgba(15, 35, 60, 0.85);
+  --ion-toolbar-border-color: rgba(17, 133, 254, 0.2);
+}
+
+/* Dark Mode - Even darker glassmorphism */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primary - Brighter blue for dark mode */
+    --ion-color-primary: #1da1f2;
+    --ion-color-primary-rgb: 29, 161, 242;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #1a8cd8;
+    --ion-color-primary-tint: #34aaf3;
+
+    /* Darker gradient background */
+    --ion-background-color: #050d18;
+    --ion-background-color-rgb: 5, 13, 24;
+    
+    /* Darker glass surfaces */
+    --ion-card-background: rgba(10, 20, 35, 0.75);
+    --ion-item-background: rgba(10, 20, 35, 0.65);
+    
+    /* Text */
+    --ion-text-color: #e7edf4;
+    --ion-text-color-rgb: 231, 237, 244;
+    --ion-color-step-550: #94a3b8;
+    
+    /* Toolbar & TabBar */
+    --ion-toolbar-background: rgba(10, 20, 35, 0.9);
+    --ion-toolbar-border-color: rgba(17, 133, 254, 0.25);
+  }
+}
+
+/* Global Glassmorphism Styles */
+ion-card {
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(17, 133, 254, 0.25);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(17, 133, 254, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  margin: 12px;
+  position: relative;
+}
+
+ion-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(17, 133, 254, 0.05) 0%,
+    transparent 50%,
+    rgba(29, 161, 242, 0.05) 100%
+  );
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+ion-item {
+  --background: var(--ion-item-background) !important;
+  --border-color: rgba(17, 133, 254, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  margin: 4px 0;
+  box-shadow: 
+    0 4px 16px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+ion-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(17, 133, 254, 0.03) 0%,
+    transparent 100%
+  );
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-color: var(--ion-toolbar-border-color);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+ion-tab-bar {
+  background: rgba(15, 35, 60, 0.5) !important;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-top: 1px solid rgba(17, 133, 254, 0.3);
+  padding: 8px 0;
+  box-shadow: 
+    0 -4px 20px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+ion-tab-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 133, 254, 0.05) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-tab-bar {
+    background: rgba(10, 20, 35, 0.85) !important;
+    border-top: 1px solid rgba(17, 133, 254, 0.35);
+  }
+}
+
+ion-modal {
+  --background: transparent !important;
+  --backdrop-opacity: 0.7;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+ion-modal ion-content {
+  --background: transparent !important;
+}
+
+ion-modal ion-toolbar {
+  --background: var(--ion-toolbar-background) !important;
+}
+
+/* Button Styles - Bluesky inspired */
+ion-button {
+  --border-radius: 20px;
+  --box-shadow: 0 4px 12px rgba(17, 133, 254, 0.2);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.3px;
+}
+
+ion-button[fill="solid"] {
+  --background: var(--ion-color-primary);
+  --background-hover: var(--ion-color-primary-shade);
+  --background-activated: var(--ion-color-primary-shade);
+}
+
+ion-button[fill="outline"] {
+  --border-width: 2px;
+  --border-color: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  --background-hover: rgba(17, 133, 254, 0.08);
+  --background-activated: rgba(17, 133, 254, 0.12);
+}
+
+ion-button[fill="clear"] {
+  --color: var(--ion-color-primary);
+  --background-hover: rgba(17, 133, 254, 0.08);
+  --background-activated: rgba(17, 133, 254, 0.12);
+}
+
+/* Avatar Enhancements */
+ion-avatar {
+  border: 3px solid rgba(17, 133, 254, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge Styles */
+ion-badge {
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Segment Styles */
+ion-segment {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+ion-segment-button {
+  --border-radius: 8px;
+  --indicator-color: var(--ion-color-primary);
+  --color-checked: white;
+  min-height: 36px;
+}
+
+/* List Styles */
+ion-list {
+  background: transparent !important;
+  padding: 8px;
+}
+
+/* Content Background */
+ion-content {
+  --background: linear-gradient(135deg, 
+    var(--ion-background-color) 0%, 
+    rgba(17, 133, 254, 0.08) 50%,
+    rgba(29, 161, 242, 0.08) 100%) !important;
+}
+
+/* Smooth transitions */
+* {
+  transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(17, 133, 254, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(17, 133, 254, 0.6);
+}
+
+/* Input Styles */
+ion-input, ion-textarea, ion-select {
+  --background: var(--ion-item-background);
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Floating Action Button Style */
+.fab-button {
+  --background: var(--ion-color-primary);
+  --border-radius: 50%;
+  --box-shadow: 0 8px 24px rgba(17, 133, 254, 0.4);
+}
+
+/* Card Header Enhancement */
+ion-card-header {
+  padding-bottom: 8px;
+}
+
+ion-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ion-text-color);
+}
+
+ion-card-subtitle {
+  font-size: 14px;
+  color: var(--ion-color-step-550);
+  margin-top: 4px;
+}
+
+/* Toast/Alert Glassmorphism */
+.ion-toast {
+  --background: var(--ion-card-background);
+  --border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
